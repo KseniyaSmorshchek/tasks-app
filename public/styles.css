@@ -1,4 +1,8 @@
-body {
-  width: 100%;
-  background-color: red;
+table {
+  border-collapse: collapse;
+  margin-top: 50px;
+}
+td, th  {
+  padding: 5px;
+  border: 1px solid black;
 }

@@ -4,24 +4,22 @@
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
     <link href="public/styles.css" rel="stylesheet" />
-    <script src="public/index.js"></script>
+    <script src="../public/index.js"></script>
     <title>Form</title>
 </head>
 <body>
-    <form method="post" action="/items">
         <label>
             Name:
-            <input type="text" name="name" />
+            <input type="text" name="name" id="name"/>
         </label>
         <label>
             Email:
-            <input type="text" name="email" />
+            <input type="text" name="email" id="email"/>
         </label>
         <label>
             Phone:
-            <input type="text" name="phone" />
+            <input type="text" name="phone" id="phone"/>
         </label>
         <button type="submit" id='add'>Submit</button>
-    </form>
 </body>
 </html>
