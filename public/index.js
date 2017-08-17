@@ -76,13 +76,6 @@ function loadItems() {
 function showItems(items) {
   var body = document.querySelector('body');
   var table = body.appendChild(document.createElement('table'));
-  var tr = table.appendChild(document.createElement('tr'));
-  var thArr = ['name', 'email', 'phone', ''];
-  thArr.forEach(function(thValue) {
-    var th = tr.appendChild(document.createElement('th'));
-    th.innerHTML = thValue;
-  });
-
   if (items.length) {
     items.forEach(function(item) {
         fillTable(item);
@@ -93,6 +86,10 @@ function showItems(items) {
 function fillTable(item) {
   var table = document.querySelector('table');
   var tr = table.appendChild(document.createElement('tr'));
+  var td = tr.appendChild(document.createElement('td'));
+  var div = td.appendChild(document.createElement('div'));
+  div.classList.add('item-img');
+  div.innerHTML = item.name.charAt(0);
   for (prop in item) {
     if(prop === 'id') {
       tr.setAttribute('data-id', item[prop]);
