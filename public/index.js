@@ -72,7 +72,9 @@ function loadItems() {
 
 function showItems(items) {
   var body = document.querySelector('body');
-  var table = body.appendChild(document.createElement('table'));
+  var div = body.appendChild(document.createElement('div'));
+  div.classList.add('table-wrapper');
+  var table = div.appendChild(document.createElement('table'));
   if (items.length) {
     items.forEach(function(item) {
         fillTable(item);
@@ -103,7 +105,7 @@ function createRemoveButton() {
   var trArr = document.querySelectorAll('tr');
   var tdDel = trArr[trArr.length - 1].appendChild(document.createElement('td'));
   var btnDel =  tdDel.appendChild(document.createElement('button'));
-  btnDel.innerHTML = 'Remove';
+  btnDel.classList.add('remove');
   btnDel.addEventListener("click", removeItem);
 }
 
