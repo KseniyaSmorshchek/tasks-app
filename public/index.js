@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
   loadItems();
 
-  var btn = document.querySelector('#add');
-  btn.addEventListener("click", createItem);
+  var addBtn = document.querySelector('#add');
+  addBtn.addEventListener("click", createItem);
+
 });
 
 
@@ -26,29 +27,42 @@ function loadItems() {
 
 function showItems(items) {
   var body = document.querySelector('body');
-  if (items.length) {
-    var table = body.appendChild(document.createElement('table'));
-    fillTable(items[0], false);
+  var table = body.appendChild(document.createElement('table'));
+  var tr = table.appendChild(document.createElement('tr'));
+  var thArr = ['name', 'email', 'phone', ''];
+  thArr.forEach(function(thValue) {
+    var th = tr.appendChild(document.createElement('th'));
+    th.innerHTML = thValue;
+  });
 
+  if (items.length) {
     items.forEach(function(item) {
-        fillTable( item, true);
+        fillTable(item);
     });
   }
 }
 
-function fillTable(item, isValue) {
+function fillTable(item) {
   var table = document.querySelector('table');
   var tr = table.appendChild(document.createElement('tr'));
   for (prop in item) {
-    var td = tr.appendChild(document.createElement('td'));
-    if(isValue) {
-      td.innerHTML = item[prop];
+    if(prop === 'id') {
+      tr.setAttribute('data-id', item[prop]);
+      createRemoveButton(item[prop])
     }
     else {
-      td.innerHTML = prop;
+      var td = tr.appendChild(document.createElement('td'));
+      td.innerHTML = item[prop];
     }
   }
+}
 
+function createRemoveButton(id) {
+  var trArr = document.querySelectorAll('tr');
+  var tdDel = trArr[trArr.length - 1].appendChild(document.createElement('td'));
+  var btnDel =  tdDel.appendChild(document.createElement('button'));
+  btnDel.innerHTML = 'Remove';
+  btnDel.addEventListener("click", removeItem);
 }
 
 //Create items
@@ -61,8 +75,8 @@ function createItem() {
   var xhr = new XMLHttpRequest();
   var newItem = 'name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&phone=' + encodeURIComponent(phone);
 
-  xhr.open("POST", '/items', true)
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+  xhr.open("POST", '/items', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.send(newItem);
 
   xhr.onreadystatechange = function() {
@@ -71,7 +85,35 @@ function createItem() {
       console.log(xhr.status + ': ' + xhr.statusText);
     }
     else {
-      fillTable(JSON.parse(xhr.responseText), true);
+      fillTable(JSON.parse(xhr.responseText));
     }
   }
+}
+
+function removeItem() {
+  var id = this.parentNode.parentNode.getAttribute('data-id');
+
+  var xhr = new XMLHttpRequest();
+  var url = '/items?id=' + id;
+  xhr.open("DELETE", url, true);
+  xhr.send();
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState != 4) return;
+    if (xhr.status != 200) {
+      console.log(xhr.status + ': ' + xhr.statusText);
+    }
+    else {
+      removeRow(JSON.parse(xhr.responseText));
+    }
+  }
+}
+
+function removeRow(item) {
+  var rowArr = document.querySelectorAll('[data-id]');
+  rowArr.forEach(function(row) {
+    if (row.getAttribute('data-id') === item[0].id) {
+      document.querySelector('table').removeChild(row);
+    }
+  })
 }
