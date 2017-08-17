@@ -1,12 +1,60 @@
 document.addEventListener("DOMContentLoaded", function() {
   loadItems();
 
-  var addBtn = document.querySelector('#add');
-  addBtn.addEventListener("click", createItem);
+  //Validation
+  var email = document.querySelector('#email');
+  email.addEventListener("blur", validateEmail);
 
+  var phone = document.querySelector('#phone');
+  phone.addEventListener("blur", validatePhone);
+
+  //Validate inputs and create item
+  var addBtn = document.querySelector('#add');
+  addBtn.addEventListener("click", function() {
+    if (validateResult) {
+      createItem();
+    }
+    else {
+      alert('Please fill inputs correct');
+    }
+  });
 });
 
 
+//Validation
+var validateResult = false;
+
+function validateEmail() {
+  var regexEmail = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
+  var value = this.value;
+  var label = document.querySelector('[for=email]');
+
+  if(!regexEmail.test(value)) {
+    validateResult = false;
+    label.classList.add('incorrect');
+  }
+  else {
+    validateResult = true;
+    label.classList.remove('incorrect');
+  }
+}
+
+function validatePhone() {
+  var regexPhone1 = /^\+375\d{9}$/;
+  var regexPhone2 = /^\8017\d{7}$/;
+
+  var value = this.value;
+  var label = document.querySelector('[for=phone]');
+
+  if(regexPhone1.test(value) || regexPhone2.test(value)) {
+    validateResult = true;
+    label.classList.remove('incorrect');
+  }
+  else {
+    validateResult = false;
+    label.classList.add('incorrect');
+  }
+}
 
 //Get and show items
 function loadItems() {
@@ -66,7 +114,6 @@ function createRemoveButton() {
 }
 
 //Create items
-
 function createItem() {
   var name = document.querySelector('#name').value;
   var email = document.querySelector('#email').value;

@@ -6,3 +6,27 @@ td, th  {
   padding: 5px;
   border: 1px solid black;
 }
+label{
+  position: relative;
+}
+label[for=email].incorrect:after {
+  content: 'Please, input correct email';
+  font-size: 12px;
+  color: #000;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+label[for=phone].incorrect:after {
+  content: 'Please, input correct phone number';
+  font-size: 12px;
+  color: #000;
+  position: absolute;
+  bottom: -20px;
+  left: 20px;
+  width: 100%;
+  text-align: center;
+}
