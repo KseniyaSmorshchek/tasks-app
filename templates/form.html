@@ -4,24 +4,26 @@
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
     <link href="public/styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300" rel="stylesheet">
     <script src="../public/index.js"></script>
     <title>Form</title>
 </head>
 <body>
-    <form>
-      <label for='name'>
-          Name:
-          <input type="text" name="name" placeholder="Input name" id="name"/>
-      </label>
-      <label for='email'>
-          Email:
-          <input type="text" name="email" placeholder="Input email" id="email"/>
-      </label>
-      <label for='phone'>
-          Phone:
-          <input type="text" name="phone" placeholder="+375ZZXXXYYYY" id="phone"/>
-      </label>
-      <button type="submit" id='add'>Submit</button>
-    </form>
+  <div class="form-wrapper">
+    <div class="wrapper">
+      <div class='form'>
+        <label for='name'>
+            <input type="text" name="name" placeholder="Input name" id="name"/>
+        </label>
+        <label for='email'>
+            <input type="text" name="email" placeholder="Input email" id="email"/>
+        </label>
+        <label for='phone'>
+            <input type="text" name="phone" placeholder="+375ZZXXXYYYY" id="phone"/>
+        </label>
+        <button type="submit" id='add'>Add</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

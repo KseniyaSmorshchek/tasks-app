@@ -14,9 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
     if (validateResult) {
       createItem();
     }
-    else {
-      alert('Please fill inputs correct');
-    }
   });
 });
 
