@@ -40,7 +40,7 @@ function fillTable(item, isValue) {
   var table = document.querySelector('table');
   var tr = table.appendChild(document.createElement('tr'));
   for (prop in item) {
-    var td = table.appendChild(document.createElement('td'));
+    var td = tr.appendChild(document.createElement('td'));
     if(isValue) {
       td.innerHTML = item[prop];
     }
@@ -48,6 +48,7 @@ function fillTable(item, isValue) {
       td.innerHTML = prop;
     }
   }
+
 }
 
 //Create items
