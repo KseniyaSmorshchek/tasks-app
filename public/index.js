@@ -67,7 +67,7 @@ function createItem() {
   xhr.onreadystatechange = function() {
     if (xhr.readyState != 4) return;
     if (xhr.status != 200) {
-      alert(xhr.status + ': ' + xhr.statusText);
+      console.log(xhr.status + ': ' + xhr.statusText);
     }
     else {
       fillTable(JSON.parse(xhr.responseText), true);
