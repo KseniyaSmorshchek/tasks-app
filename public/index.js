@@ -48,7 +48,7 @@ function fillTable(item) {
   for (prop in item) {
     if(prop === 'id') {
       tr.setAttribute('data-id', item[prop]);
-      createRemoveButton(item[prop])
+      createRemoveButton()
     }
     else {
       var td = tr.appendChild(document.createElement('td'));
@@ -57,7 +57,7 @@ function fillTable(item) {
   }
 }
 
-function createRemoveButton(id) {
+function createRemoveButton() {
   var trArr = document.querySelectorAll('tr');
   var tdDel = trArr[trArr.length - 1].appendChild(document.createElement('td'));
   var btnDel =  tdDel.appendChild(document.createElement('button'));
@@ -71,6 +71,8 @@ function createItem() {
   var name = document.querySelector('#name').value;
   var email = document.querySelector('#email').value;
   var phone = document.querySelector('#phone').value;
+
+  clearInputs();
 
   var xhr = new XMLHttpRequest();
   var newItem = 'name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&phone=' + encodeURIComponent(phone);
@@ -90,6 +92,14 @@ function createItem() {
   }
 }
 
+function clearInputs() {
+  var inputs = document.querySelectorAll('input');
+  inputs.forEach(function(input) {
+    input.value = '';
+  });
+}
+
+//Remove item
 function removeItem() {
   var id = this.parentNode.parentNode.getAttribute('data-id');
 
