@@ -78,6 +78,7 @@ function showItems(items) {
   if (items.length) {
     items.forEach(function(item) {
         fillTable(item);
+        fillNumberColumn();
     });
   }
 }
@@ -85,6 +86,7 @@ function showItems(items) {
 function fillTable(item) {
   var table = document.querySelector('table');
   var tr = table.appendChild(document.createElement('tr'));
+  var td = tr.appendChild(document.createElement('td'));
   var td = tr.appendChild(document.createElement('td'));
   var div = td.appendChild(document.createElement('div'));
   div.classList.add('item-img');
@@ -99,6 +101,14 @@ function fillTable(item) {
       td.innerHTML = item[prop];
     }
   }
+}
+
+function fillNumberColumn() {
+  var trArr = document.querySelectorAll('tr');
+  trArr.forEach(function(tr, i) {
+      var td = tr.querySelector('td:first-child');
+      td.innerHTML = i+1;
+  });
 }
 
 function createRemoveButton() {
@@ -131,6 +141,7 @@ function createItem() {
     }
     else {
       fillTable(JSON.parse(xhr.responseText));
+      fillNumberColumn();
     }
   }
 }
@@ -158,6 +169,7 @@ function removeItem() {
     }
     else {
       removeRow(JSON.parse(xhr.responseText));
+      fillNumberColumn();
     }
   }
 }
