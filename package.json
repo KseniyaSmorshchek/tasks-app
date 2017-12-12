@@ -1,7 +1,9 @@
 {
   "name": "epam-node-app2",
   "version": "0.0.1",
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack": "^2.1.0-beta.22"
+  },
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js"
@@ -9,6 +11,13 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/volegg/epam-tasks-app2.git"
-  }
+    "url": "git+https://github.com/volegg/epam-tasks-app2.git"
+  },
+  "description": "",
+  "bugs": {
+    "url": "https://github.com/volegg/epam-tasks-app2/issues"
+  },
+  "homepage": "https://github.com/volegg/epam-tasks-app2#readme",
+  "author": "",
+  "license": "ISC"
 }
