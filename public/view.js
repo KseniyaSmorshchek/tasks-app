@@ -1,5 +1,4 @@
-
-const view = {
+module.exports = {
   // Fill the table with DB data
   fillTable: function(item) {
     let table = document.querySelector('table');
@@ -19,7 +18,7 @@ const view = {
         td.innerHTML = item[prop];
       }
     }
-    fillRowNumber();
+    this.fillRowNumber();
   },
   // Show the table with items
   showItems: function(items) {
@@ -30,7 +29,7 @@ const view = {
     if (items.length) {
       items.forEach((item) => {
           this.fillTable(item);
-          this.fillRowNumber(view);
+          this.fillRowNumber();
       });
     }
   },
@@ -67,4 +66,3 @@ const view = {
     this.fillRowNumber();
   }
 }
-module.exports = view;

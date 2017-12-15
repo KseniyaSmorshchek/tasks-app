@@ -1,3 +1,5 @@
+const view = require('./view');
+
 module.exports = {
   ajaxUtility: function (method, url, callback, reqBody) {
     let xhr = new XMLHttpRequest();
@@ -15,7 +17,7 @@ module.exports = {
         console.log(xhr.status + ': ' + xhr.statusText);
       }
       else {
-        callback(JSON.parse(xhr.responseText));
+        callback.call(view, JSON.parse(xhr.responseText));
       }
     }
   }
